@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Summarization</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}" />
+  <style>
+    body {
+      margin: 0;
+    }
+    .i {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+    button{
+        color: #ffffff;
+        font-size : 16px;
+        background-color: blue;
+        padding: 8px;
+        border-radius: 10px;
+    }
+    .h1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+    }
+    .container {
+      display: flex;
+      width: 90%;
+      max-width: 800px; /* Adjust as needed */
+      margin: 0 auto;
+      gap:20px; /* Center the container */
+    }
+    .c1 {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      width: 70%;
+    }
+    .patmesh{
+        text-align: start;
+    }
+
+    .summary-section {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      background-color: rgba(222, 125, 175, 0.845);
+      border-radius: 10px;
+      overflow: auto; 
+    }
+
+    .original-section {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      background-color:burlywood;
+      border-radius: 10px;
+      overflow: auto; 
+    }
+  </style>
+</head>
+
+<body>
+    <div class="h1">
+    <h1>Text Summarization</h1>
+    <form id="summarizeForm" action="{{url_for('summarize')}}" method="post" onsubmit="return validateForm()">
+        <textarea id="data" name="data" rows="8" cols="70" placeholder="Enter your text here"></textarea>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+   <div class="i">
+  <div class="container">
+    <div class="c1">
+    <h2>Original Text</h2>
+    <div class="original-section">
+      
+      
+      <div class="patmesh">
+        
+        <p>{{doc}}</p>
+      </div>
+    </div>
+    </div>
+    <div class="c1">
+    <h2>Summarized Text</h2>
+    <div class="summary-section">
+        
+        <div class="patmesh">
+          
+          <p>{{summary}}</p>
+        </div>
+      </div>
+    </div> 
+</div>
+  </div>
+  <script>
+    function validateForm() {
+      var textareaValue = document.getElementById("data").value.trim();
+  
+      if (textareaValue === "") {
+        alert("Please enter text before submitting.");
+        return false; // Prevent form submission
+      }
+  
+      // If the textarea is not empty, allow the form to submit
+      return true;
+    }
+  </script>
+</body>
+</html>
